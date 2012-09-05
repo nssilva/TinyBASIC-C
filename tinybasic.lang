@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- GtkSourceView Language Specification -->
+<language id="tinybasic" _name="Tiny BASIC" version="2.0" _section="Sources">
+  <metadata>
+    <property name="globs">*.bas</property>
+  </metadata>
+
+  <styles>
+    <style id="comment" _name="Comment"        map-to="def:comment" />
+    <style id="keyword" _name="Keyword"        map-to="def:keyword" />
+    <style id="string"  _name="String"         map-to="def:string" />
+    <style id="decimal" _name="Decimal number" map-to="def:decimal" />
+  </styles>
+
+  <default-regex-options case-sensitive="false" />
+
+  <definitions>
+
+    <context id="tinybasic" class="no-spell-check">
+      <include>
+	<context ref="rem-comment" />
+	<context ref="run-comment" />
+	<context ref="keywords" />
+	<context ref="string" />
+	<context ref="decimal" />
+      </include>
+    </context>
+
+    <context id="rem-comment" style-ref="comment" end-at-line-end="true"
+	     class="comment" class-disabled="no-spell-check">
+      <start>^\s*rem</start>
+    </context>
+
+    <context id="run-comment" style-ref="comment" class="comment"
+	     class-disabled="no-spell-check">
+      <start>^\s*run</start>
+    </context>
+
+    <context id="keywords" style-ref="keyword">
+      <keyword>print</keyword>
+      <keyword>if</keyword>
+      <keyword>goto</keyword>
+      <keyword>input</keyword>
+      <keyword>let</keyword>
+      <keyword>gosub</keyword>
+      <keyword>return</keyword>
+      <keyword>end</keyword>
+    </context>
+
+    <context id="string" style-ref="string" end-at-line-end="true"
+	     class="string" class-disabled="no-spell-check">
+      <start>"</start>
+      <end>"</end>
+    </context>
+
+    <context id="decimal" style-ref="decimal">
+      <match>[0-9]+</match>
+    </context>
+
+  </definitions>
+</language>
+<!-- vim:set ts=8 sts=2 sw=2 noet: -->
